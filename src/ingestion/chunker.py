@@ -1,6 +1,7 @@
-from pathlib import Path
+import pathlib as Path
 
-def create_chunk(text,chunk_size,overlap):
+
+def create_chunks(text,chunk_size=500,overlap=50):
     word=text.split()
     chunks=[]
     
