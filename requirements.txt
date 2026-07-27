@@ -1,0 +1,42 @@
+# Data Collection & Processing
+requests
+beautifulsoup4
+pandas
+numpy
+
+# Document Processing
+markdown
+beautifulsoup4
+
+# NLP & Text Processing
+nltk
+
+# Embeddings
+sentence-transformers
+
+# Vector Database
+faiss-cpu
+
+# RAG / LLM
+langchain
+langchain-community
+langchain-text-splitters
+
+# LLM API
+groq
+
+# Environment Variables
+python-dotenv
+
+# Web App
+streamlit
+
+# API
+fastapi
+uvicorn
+
+# Evaluation
+scikit-learn
+
+# Testing
+pytest
