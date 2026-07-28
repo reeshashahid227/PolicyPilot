@@ -1,7 +1,7 @@
 import faiss
 import numpy as np
 
-class Vectorstore:
+class VectorStore:
 
     def __init__(self,dimension):
         self.index=faiss.IndexFlatIP(dimension)
@@ -22,7 +22,7 @@ class Vectorstore:
         return scores,indices
     
     def save(self,path):
-        fiass.write_index(
+        faiss.write_index(
             self.index,
             path
         )

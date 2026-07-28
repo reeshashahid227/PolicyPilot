@@ -1,0 +1,682 @@
+[
+    {
+        "vector_id": 0,
+        "chunk_id": "Clef Values.md-0",
+        "metadata": {
+            "source": "Clef Values.md",
+            "category": "General",
+            "file_type": "md",
+            "relative_path": "Clef Values.md"
+        }
+    },
+    {
+        "vector_id": 1,
+        "chunk_id": "Mission Statement.md-0",
+        "metadata": {
+            "source": "Mission Statement.md",
+            "category": "General",
+            "file_type": "md",
+            "relative_path": "Mission Statement.md"
+        }
+    },
+    {
+        "vector_id": 2,
+        "chunk_id": "Policy Changes.md-0",
+        "metadata": {
+            "source": "Policy Changes.md",
+            "category": "General",
+            "file_type": "md",
+            "relative_path": "Policy Changes.md"
+        }
+    },
+    {
+        "vector_id": 3,
+        "chunk_id": "Policy Changes.md-1",
+        "metadata": {
+            "source": "Policy Changes.md",
+            "category": "General",
+            "file_type": "md",
+            "relative_path": "Policy Changes.md"
+        }
+    },
+    {
+        "vector_id": 4,
+        "chunk_id": "Policy Changes.md-2",
+        "metadata": {
+            "source": "Policy Changes.md",
+            "category": "General",
+            "file_type": "md",
+            "relative_path": "Policy Changes.md"
+        }
+    },
+    {
+        "vector_id": 5,
+        "chunk_id": "README.md-0",
+        "metadata": {
+            "source": "README.md",
+            "category": "General",
+            "file_type": "md",
+            "relative_path": "README.md"
+        }
+    },
+    {
+        "vector_id": 6,
+        "chunk_id": "README.md-1",
+        "metadata": {
+            "source": "README.md",
+            "category": "General",
+            "file_type": "md",
+            "relative_path": "README.md"
+        }
+    },
+    {
+        "vector_id": 7,
+        "chunk_id": "Continuing Education.md-0",
+        "metadata": {
+            "source": "Continuing Education.md",
+            "category": "Benefits and Perks",
+            "file_type": "md",
+            "relative_path": "Benefits and Perks\\Continuing Education.md"
+        }
+    },
+    {
+        "vector_id": 8,
+        "chunk_id": "Continuing Education.md-1",
+        "metadata": {
+            "source": "Continuing Education.md",
+            "category": "Benefits and Perks",
+            "file_type": "md",
+            "relative_path": "Benefits and Perks\\Continuing Education.md"
+        }
+    },
+    {
+        "vector_id": 9,
+        "chunk_id": "Healthcare and Disability Insurance.md-0",
+        "metadata": {
+            "source": "Healthcare and Disability Insurance.md",
+            "category": "Benefits and Perks",
+            "file_type": "md",
+            "relative_path": "Benefits and Perks\\Healthcare and Disability Insurance.md"
+        }
+    },
+    {
+        "vector_id": 10,
+        "chunk_id": "Holiday List.md-0",
+        "metadata": {
+            "source": "Holiday List.md",
+            "category": "Benefits and Perks",
+            "file_type": "md",
+            "relative_path": "Benefits and Perks\\Holiday List.md"
+        }
+    },
+    {
+        "vector_id": 11,
+        "chunk_id": "New Parent Leave.md-0",
+        "metadata": {
+            "source": "New Parent Leave.md",
+            "category": "Benefits and Perks",
+            "file_type": "md",
+            "relative_path": "Benefits and Perks\\New Parent Leave.md"
+        }
+    },
+    {
+        "vector_id": 12,
+        "chunk_id": "Other Protected Absences.md-0",
+        "metadata": {
+            "source": "Other Protected Absences.md",
+            "category": "Benefits and Perks",
+            "file_type": "md",
+            "relative_path": "Benefits and Perks\\Other Protected Absences.md"
+        }
+    },
+    {
+        "vector_id": 13,
+        "chunk_id": "Referral Bonuses.md-0",
+        "metadata": {
+            "source": "Referral Bonuses.md",
+            "category": "Benefits and Perks",
+            "file_type": "md",
+            "relative_path": "Benefits and Perks\\Referral Bonuses.md"
+        }
+    },
+    {
+        "vector_id": 14,
+        "chunk_id": "Sabbatical.md-0",
+        "metadata": {
+            "source": "Sabbatical.md",
+            "category": "Benefits and Perks",
+            "file_type": "md",
+            "relative_path": "Benefits and Perks\\Sabbatical.md"
+        }
+    },
+    {
+        "vector_id": 15,
+        "chunk_id": "Vacation and Sick Leave.md-0",
+        "metadata": {
+            "source": "Vacation and Sick Leave.md",
+            "category": "Benefits and Perks",
+            "file_type": "md",
+            "relative_path": "Benefits and Perks\\Vacation and Sick Leave.md"
+        }
+    },
+    {
+        "vector_id": 16,
+        "chunk_id": "At-Will Employment.md-0",
+        "metadata": {
+            "source": "At-Will Employment.md",
+            "category": "Employment Policies",
+            "file_type": "md",
+            "relative_path": "Employment Policies\\At-Will Employment.md"
+        }
+    },
+    {
+        "vector_id": 17,
+        "chunk_id": "Code of Conduct in the Community.md-0",
+        "metadata": {
+            "source": "Code of Conduct in the Community.md",
+            "category": "Employment Policies",
+            "file_type": "md",
+            "relative_path": "Employment Policies\\Code of Conduct in the Community.md"
+        }
+    },
+    {
+        "vector_id": 18,
+        "chunk_id": "Complaint Policy.md-0",
+        "metadata": {
+            "source": "Complaint Policy.md",
+            "category": "Employment Policies",
+            "file_type": "md",
+            "relative_path": "Employment Policies\\Complaint Policy.md"
+        }
+    },
+    {
+        "vector_id": 19,
+        "chunk_id": "Drug and Alcohol Policy.md-0",
+        "metadata": {
+            "source": "Drug and Alcohol Policy.md",
+            "category": "Employment Policies",
+            "file_type": "md",
+            "relative_path": "Employment Policies\\Drug and Alcohol Policy.md"
+        }
+    },
+    {
+        "vector_id": 20,
+        "chunk_id": "Employee Privacy.md-0",
+        "metadata": {
+            "source": "Employee Privacy.md",
+            "category": "Employment Policies",
+            "file_type": "md",
+            "relative_path": "Employment Policies\\Employee Privacy.md"
+        }
+    },
+    {
+        "vector_id": 21,
+        "chunk_id": "Employee Privacy.md-1",
+        "metadata": {
+            "source": "Employee Privacy.md",
+            "category": "Employment Policies",
+            "file_type": "md",
+            "relative_path": "Employment Policies\\Employee Privacy.md"
+        }
+    },
+    {
+        "vector_id": 22,
+        "chunk_id": "Equal Opportunity Employment.md-0",
+        "metadata": {
+            "source": "Equal Opportunity Employment.md",
+            "category": "Employment Policies",
+            "file_type": "md",
+            "relative_path": "Employment Policies\\Equal Opportunity Employment.md"
+        }
+    },
+    {
+        "vector_id": 23,
+        "chunk_id": "Salary and Equity Compensation.md-0",
+        "metadata": {
+            "source": "Salary and Equity Compensation.md",
+            "category": "Employment Policies",
+            "file_type": "md",
+            "relative_path": "Employment Policies\\Salary and Equity Compensation.md"
+        }
+    },
+    {
+        "vector_id": 24,
+        "chunk_id": "Salary and Equity Compensation.md-1",
+        "metadata": {
+            "source": "Salary and Equity Compensation.md",
+            "category": "Employment Policies",
+            "file_type": "md",
+            "relative_path": "Employment Policies\\Salary and Equity Compensation.md"
+        }
+    },
+    {
+        "vector_id": 25,
+        "chunk_id": "Working Remotely.md-0",
+        "metadata": {
+            "source": "Working Remotely.md",
+            "category": "Employment Policies",
+            "file_type": "md",
+            "relative_path": "Employment Policies\\Working Remotely.md"
+        }
+    },
+    {
+        "vector_id": 26,
+        "chunk_id": "Working Remotely.md-1",
+        "metadata": {
+            "source": "Working Remotely.md",
+            "category": "Employment Policies",
+            "file_type": "md",
+            "relative_path": "Employment Policies\\Working Remotely.md"
+        }
+    },
+    {
+        "vector_id": 27,
+        "chunk_id": "Working Remotely.md-2",
+        "metadata": {
+            "source": "Working Remotely.md",
+            "category": "Employment Policies",
+            "file_type": "md",
+            "relative_path": "Employment Policies\\Working Remotely.md"
+        }
+    },
+    {
+        "vector_id": 28,
+        "chunk_id": "Acknowledgement of Receipt of Changes.md-0",
+        "metadata": {
+            "source": "Acknowledgement of Receipt of Changes.md",
+            "category": "Hiring Documents",
+            "file_type": "md",
+            "relative_path": "Hiring Documents\\Acknowledgement of Receipt of Changes.md"
+        }
+    },
+    {
+        "vector_id": 29,
+        "chunk_id": "Acknowledgment of Receipt.md-0",
+        "metadata": {
+            "source": "Acknowledgment of Receipt.md",
+            "category": "Hiring Documents",
+            "file_type": "md",
+            "relative_path": "Hiring Documents\\Acknowledgment of Receipt.md"
+        }
+    },
+    {
+        "vector_id": 30,
+        "chunk_id": "Clef Offer Letter.md-0",
+        "metadata": {
+            "source": "Clef Offer Letter.md",
+            "category": "Hiring Documents",
+            "file_type": "md",
+            "relative_path": "Hiring Documents\\Clef Offer Letter.md"
+        }
+    },
+    {
+        "vector_id": 31,
+        "chunk_id": "Clef Offer Letter.md-1",
+        "metadata": {
+            "source": "Clef Offer Letter.md",
+            "category": "Hiring Documents",
+            "file_type": "md",
+            "relative_path": "Hiring Documents\\Clef Offer Letter.md"
+        }
+    },
+    {
+        "vector_id": 32,
+        "chunk_id": "Employee Proprietary Information and Inventions Assignment Agreement.md-0",
+        "metadata": {
+            "source": "Employee Proprietary Information and Inventions Assignment Agreement.md",
+            "category": "Hiring Documents",
+            "file_type": "md",
+            "relative_path": "Hiring Documents\\Employee Proprietary Information and Inventions Assignment Agreement.md"
+        }
+    },
+    {
+        "vector_id": 33,
+        "chunk_id": "Employee Proprietary Information and Inventions Assignment Agreement.md-1",
+        "metadata": {
+            "source": "Employee Proprietary Information and Inventions Assignment Agreement.md",
+            "category": "Hiring Documents",
+            "file_type": "md",
+            "relative_path": "Hiring Documents\\Employee Proprietary Information and Inventions Assignment Agreement.md"
+        }
+    },
+    {
+        "vector_id": 34,
+        "chunk_id": "Employee Proprietary Information and Inventions Assignment Agreement.md-2",
+        "metadata": {
+            "source": "Employee Proprietary Information and Inventions Assignment Agreement.md",
+            "category": "Hiring Documents",
+            "file_type": "md",
+            "relative_path": "Hiring Documents\\Employee Proprietary Information and Inventions Assignment Agreement.md"
+        }
+    },
+    {
+        "vector_id": 35,
+        "chunk_id": "Employee Proprietary Information and Inventions Assignment Agreement.md-3",
+        "metadata": {
+            "source": "Employee Proprietary Information and Inventions Assignment Agreement.md",
+            "category": "Hiring Documents",
+            "file_type": "md",
+            "relative_path": "Hiring Documents\\Employee Proprietary Information and Inventions Assignment Agreement.md"
+        }
+    },
+    {
+        "vector_id": 36,
+        "chunk_id": "Employee Proprietary Information and Inventions Assignment Agreement.md-4",
+        "metadata": {
+            "source": "Employee Proprietary Information and Inventions Assignment Agreement.md",
+            "category": "Hiring Documents",
+            "file_type": "md",
+            "relative_path": "Hiring Documents\\Employee Proprietary Information and Inventions Assignment Agreement.md"
+        }
+    },
+    {
+        "vector_id": 37,
+        "chunk_id": "Employee Proprietary Information and Inventions Assignment Agreement.md-5",
+        "metadata": {
+            "source": "Employee Proprietary Information and Inventions Assignment Agreement.md",
+            "category": "Hiring Documents",
+            "file_type": "md",
+            "relative_path": "Hiring Documents\\Employee Proprietary Information and Inventions Assignment Agreement.md"
+        }
+    },
+    {
+        "vector_id": 38,
+        "chunk_id": "Employee Proprietary Information and Inventions Assignment Agreement.md-6",
+        "metadata": {
+            "source": "Employee Proprietary Information and Inventions Assignment Agreement.md",
+            "category": "Hiring Documents",
+            "file_type": "md",
+            "relative_path": "Hiring Documents\\Employee Proprietary Information and Inventions Assignment Agreement.md"
+        }
+    },
+    {
+        "vector_id": 39,
+        "chunk_id": "Guide to Your Equity.md-0",
+        "metadata": {
+            "source": "Guide to Your Equity.md",
+            "category": "Hiring Documents",
+            "file_type": "md",
+            "relative_path": "Hiring Documents\\Guide to Your Equity.md"
+        }
+    },
+    {
+        "vector_id": 40,
+        "chunk_id": "Guide to Your Equity.md-1",
+        "metadata": {
+            "source": "Guide to Your Equity.md",
+            "category": "Hiring Documents",
+            "file_type": "md",
+            "relative_path": "Hiring Documents\\Guide to Your Equity.md"
+        }
+    },
+    {
+        "vector_id": 41,
+        "chunk_id": "Guide to Your Equity.md-2",
+        "metadata": {
+            "source": "Guide to Your Equity.md",
+            "category": "Hiring Documents",
+            "file_type": "md",
+            "relative_path": "Hiring Documents\\Guide to Your Equity.md"
+        }
+    },
+    {
+        "vector_id": 42,
+        "chunk_id": "Guide to Your Equity.md-3",
+        "metadata": {
+            "source": "Guide to Your Equity.md",
+            "category": "Hiring Documents",
+            "file_type": "md",
+            "relative_path": "Hiring Documents\\Guide to Your Equity.md"
+        }
+    },
+    {
+        "vector_id": 43,
+        "chunk_id": "Guide to Your Equity.md-4",
+        "metadata": {
+            "source": "Guide to Your Equity.md",
+            "category": "Hiring Documents",
+            "file_type": "md",
+            "relative_path": "Hiring Documents\\Guide to Your Equity.md"
+        }
+    },
+    {
+        "vector_id": 44,
+        "chunk_id": "Handbook Introduction.md-0",
+        "metadata": {
+            "source": "Handbook Introduction.md",
+            "category": "Hiring Documents",
+            "file_type": "md",
+            "relative_path": "Hiring Documents\\Handbook Introduction.md"
+        }
+    },
+    {
+        "vector_id": 45,
+        "chunk_id": "Communication and Transparency.md-0",
+        "metadata": {
+            "source": "Communication and Transparency.md",
+            "category": "Onboarding Documents",
+            "file_type": "md",
+            "relative_path": "Onboarding Documents\\Communication and Transparency.md"
+        }
+    },
+    {
+        "vector_id": 46,
+        "chunk_id": "Communication and Transparency.md-1",
+        "metadata": {
+            "source": "Communication and Transparency.md",
+            "category": "Onboarding Documents",
+            "file_type": "md",
+            "relative_path": "Onboarding Documents\\Communication and Transparency.md"
+        }
+    },
+    {
+        "vector_id": 47,
+        "chunk_id": "Communication and Transparency.md-2",
+        "metadata": {
+            "source": "Communication and Transparency.md",
+            "category": "Onboarding Documents",
+            "file_type": "md",
+            "relative_path": "Onboarding Documents\\Communication and Transparency.md"
+        }
+    },
+    {
+        "vector_id": 48,
+        "chunk_id": "Direct Reports.md-0",
+        "metadata": {
+            "source": "Direct Reports.md",
+            "category": "Onboarding Documents",
+            "file_type": "md",
+            "relative_path": "Onboarding Documents\\Direct Reports.md"
+        }
+    },
+    {
+        "vector_id": 49,
+        "chunk_id": "Objectives and Key Results.md-0",
+        "metadata": {
+            "source": "Objectives and Key Results.md",
+            "category": "Onboarding Documents",
+            "file_type": "md",
+            "relative_path": "Onboarding Documents\\Objectives and Key Results.md"
+        }
+    },
+    {
+        "vector_id": 50,
+        "chunk_id": "Objectives and Key Results.md-1",
+        "metadata": {
+            "source": "Objectives and Key Results.md",
+            "category": "Onboarding Documents",
+            "file_type": "md",
+            "relative_path": "Onboarding Documents\\Objectives and Key Results.md"
+        }
+    },
+    {
+        "vector_id": 51,
+        "chunk_id": "One on Ones.md-0",
+        "metadata": {
+            "source": "One on Ones.md",
+            "category": "Onboarding Documents",
+            "file_type": "md",
+            "relative_path": "Onboarding Documents\\One on Ones.md"
+        }
+    },
+    {
+        "vector_id": 52,
+        "chunk_id": "One on Ones.md-1",
+        "metadata": {
+            "source": "One on Ones.md",
+            "category": "Onboarding Documents",
+            "file_type": "md",
+            "relative_path": "Onboarding Documents\\One on Ones.md"
+        }
+    },
+    {
+        "vector_id": 53,
+        "chunk_id": "Product Manifesto.md-0",
+        "metadata": {
+            "source": "Product Manifesto.md",
+            "category": "Onboarding Documents",
+            "file_type": "md",
+            "relative_path": "Onboarding Documents\\Product Manifesto.md"
+        }
+    },
+    {
+        "vector_id": 54,
+        "chunk_id": "Product Manifesto.md-1",
+        "metadata": {
+            "source": "Product Manifesto.md",
+            "category": "Onboarding Documents",
+            "file_type": "md",
+            "relative_path": "Onboarding Documents\\Product Manifesto.md"
+        }
+    },
+    {
+        "vector_id": 55,
+        "chunk_id": "Welcome to Clef.md-0",
+        "metadata": {
+            "source": "Welcome to Clef.md",
+            "category": "Onboarding Documents",
+            "file_type": "md",
+            "relative_path": "Onboarding Documents\\Welcome to Clef.md"
+        }
+    },
+    {
+        "vector_id": 56,
+        "chunk_id": "Welcome to Clef.md-1",
+        "metadata": {
+            "source": "Welcome to Clef.md",
+            "category": "Onboarding Documents",
+            "file_type": "md",
+            "relative_path": "Onboarding Documents\\Welcome to Clef.md"
+        }
+    },
+    {
+        "vector_id": 57,
+        "chunk_id": "Welcome to Clef.md-2",
+        "metadata": {
+            "source": "Welcome to Clef.md",
+            "category": "Onboarding Documents",
+            "file_type": "md",
+            "relative_path": "Onboarding Documents\\Welcome to Clef.md"
+        }
+    },
+    {
+        "vector_id": 58,
+        "chunk_id": "Budgeting.md-0",
+        "metadata": {
+            "source": "Budgeting.md",
+            "category": "Operations Documents",
+            "file_type": "md",
+            "relative_path": "Operations Documents\\Budgeting.md"
+        }
+    },
+    {
+        "vector_id": 59,
+        "chunk_id": "Effective Meetings.md-0",
+        "metadata": {
+            "source": "Effective Meetings.md",
+            "category": "Operations Documents",
+            "file_type": "md",
+            "relative_path": "Operations Documents\\Effective Meetings.md"
+        }
+    },
+    {
+        "vector_id": 60,
+        "chunk_id": "Hack Weeks.md-0",
+        "metadata": {
+            "source": "Hack Weeks.md",
+            "category": "Operations Documents",
+            "file_type": "md",
+            "relative_path": "Operations Documents\\Hack Weeks.md"
+        }
+    },
+    {
+        "vector_id": 61,
+        "chunk_id": "Interview Process.md-0",
+        "metadata": {
+            "source": "Interview Process.md",
+            "category": "Operations Documents",
+            "file_type": "md",
+            "relative_path": "Operations Documents\\Interview Process.md"
+        }
+    },
+    {
+        "vector_id": 62,
+        "chunk_id": "Interview Process.md-1",
+        "metadata": {
+            "source": "Interview Process.md",
+            "category": "Operations Documents",
+            "file_type": "md",
+            "relative_path": "Operations Documents\\Interview Process.md"
+        }
+    },
+    {
+        "vector_id": 63,
+        "chunk_id": "Onboarding.md-0",
+        "metadata": {
+            "source": "Onboarding.md",
+            "category": "Operations Documents",
+            "file_type": "md",
+            "relative_path": "Operations Documents\\Onboarding.md"
+        }
+    },
+    {
+        "vector_id": 64,
+        "chunk_id": "Onboarding.md-1",
+        "metadata": {
+            "source": "Onboarding.md",
+            "category": "Operations Documents",
+            "file_type": "md",
+            "relative_path": "Operations Documents\\Onboarding.md"
+        }
+    },
+    {
+        "vector_id": 65,
+        "chunk_id": "Sharing Files.md-0",
+        "metadata": {
+            "source": "Sharing Files.md",
+            "category": "Operations Documents",
+            "file_type": "md",
+            "relative_path": "Operations Documents\\Sharing Files.md"
+        }
+    },
+    {
+        "vector_id": 66,
+        "chunk_id": "Sourcing Candidates.md-0",
+        "metadata": {
+            "source": "Sourcing Candidates.md",
+            "category": "Operations Documents",
+            "file_type": "md",
+            "relative_path": "Operations Documents\\Sourcing Candidates.md"
+        }
+    },
+    {
+        "vector_id": 67,
+        "chunk_id": "Sourcing Candidates.md-1",
+        "metadata": {
+            "source": "Sourcing Candidates.md",
+            "category": "Operations Documents",
+            "file_type": "md",
+            "relative_path": "Operations Documents\\Sourcing Candidates.md"
+        }
+    }
+]
