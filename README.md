@@ -1,49 +1,53 @@
 # 🏛️ PolicyPilot
 
-### AI-Powered Policy Assistant using Retrieval-Augmented Generation (RAG)
+## AI-Powered Policy Assistant using Retrieval-Augmented Generation (RAG)
 
-PolicyPilot is an AI-powered policy assistant that allows users to ask questions about company policies and receive **document-grounded answers with relevant source citations**.
+PolicyPilot is an AI-powered policy assistant that answers questions about company policies using a **Retrieval-Augmented Generation (RAG)** pipeline.
 
-Instead of relying only on an LLM's internal knowledge, PolicyPilot retrieves relevant information from policy documents first and then provides that context to the language model for answer generation.
+Instead of asking an LLM to answer from its general knowledge, PolicyPilot first retrieves relevant information from the policy documents and then uses that retrieved context to generate a grounded response.
+
+The application also displays the **sources used to produce the answer**, making the response more transparent and easier to verify.
 
 ---
 
 ## 🚀 Live Demo
 
-**Streamlit App:**  
-https://policypilot-jifgmb3kctvb6e9bzxvszi.streamlit.app/
+### 🌐 Streamlit Application
+
+**https://policypilot-jifgmb3kctvb6e9bzxvszi.streamlit.app/**
 
 ---
 
-## ✨ Key Features
+## ✨ Features
 
-- 📄 Policy document ingestion and preprocessing
-- 🧹 Text cleaning and normalization
-- ✂️ Document chunking for efficient retrieval
-- 🧠 Semantic embeddings using Sentence Transformers
-- 🔎 Similarity search using FAISS
-- 🤖 Grounded answer generation using Groq LLM
-- 📚 Source/citation display for retrieved policy information
-- 🛡️ RAG-based protection against unsupported answers
+- 📄 Policy document ingestion
+- 🧹 Text cleaning and preprocessing
+- ✂️ Document chunking
+- 🧠 Semantic embeddings
+- 🔎 FAISS-based similarity retrieval
+- 🤖 Groq-powered LLM generation
+- 📚 Source/citation display
+- 🛡️ Grounded responses to reduce hallucinations
 - 💬 Interactive Streamlit chat interface
-- ⚡ PolicyEngine for connecting retrieval and generation
-- 🔌 FastAPI REST API for exposing the RAG pipeline
-- ☁️ Streamlit deployment for public access
+- 🧩 Modular `PolicyEngine`
+- ⚡ FastAPI API layer
+- ☁️ Public Streamlit deployment
+- 🔐 Environment-variable based API key management
 
 ---
 
-## 🧠 What Problem Does PolicyPilot Solve?
+# 🧠 What Problem Does PolicyPilot Solve?
 
-Employees often need quick answers to questions such as:
+Company policy documents can be long and difficult to search manually.
+
+An employee may ask:
 
 - What is the remote work policy?
 - How many annual leave days are available?
 - What is the sick leave policy?
-- What employee benefits are available?
+- What benefits are available?
 
-Searching through long policy documents manually can be slow and frustrating.
-
-PolicyPilot provides a conversational interface where users can ask questions naturally and receive answers grounded in the available policy documents.
+PolicyPilot lets the user ask these questions naturally and retrieves relevant information from the available policy documents before generating the answer.
 
 ---
 
@@ -62,10 +66,10 @@ PolicyPilot provides a conversational interface where users can ask questions na
                     Text Chunking
                            │
                            ▼
-                  Embedding Model
+                Sentence Transformers
                            │
                            ▼
-                    FAISS Index
+                   FAISS Vector Index
                            │
                            │
                     User Question
@@ -80,64 +84,286 @@ PolicyPilot provides a conversational interface where users can ask questions na
                      PolicyEngine
                            │
                            ▼
-                       Groq LLM
+                      Groq LLM
                            │
                            ▼
-                Grounded Answer + Sources
+                Answer + Source Citations
                            │
                            ▼
-                     Streamlit UI
+                    Streamlit Interface
 ```
 
 ---
 
-# 🏗️ Architecture
-
-PolicyPilot is organized into separate layers so that each component has a clear responsibility.
+# 🏗️ Project Structure
 
 ```text
 PolicyPilot/
 │
 ├── app.py
+├── requirements.txt
+├── .gitignore
+├── README.md
 │
 ├── data/
 │   ├── raw/
+│   │   └── handbook-master/
+│   │       ├── Benefits and Perks/
+│   │       ├── Clef Values.md
+│   │       ├── Mission Statement.md
+│   │       ├── Policy Changes.md
+│   │       └── README.md
+│   │
 │   └── processed/
 │       ├── chunks.json
 │       └── policy.index
 │
-├── src/
-│   ├── api/
-│   │   ├── main.py
-│   │   └── schemas.py
-│   │
-│   ├── core/
-│   │   └── policy_engine.py
-│   │
-│   ├── embeddings/
-│   │   └── embedder.py
-│   │
-│   ├── retrieval/
-│   │   └── retriever.py
-│   │
-│   ├── generation/
-│   │   ├── llm_generator.py
-│   │   └── citations.py
-│   │
-│   └── ingestion/
-│       ├── loader.py
-│       ├── cleaner.py
-│       ├── chunker.py
-│       └── metadata.py
+├── scripts/
+│   └── ...
 │
-├── requirements.txt
-├── .gitignore
-└── README.md
+└── src/
+    ├── __init__.py
+    │
+    ├── api/
+    │   ├── __init__.py
+    │   ├── main.py
+    │   └── schemas.py
+    │
+    ├── core/
+    │   ├── __init__.py
+    │   └── policy_engine.py
+    │
+    ├── ingestion/
+    │   ├── __init__.py
+    │   ├── loader.py
+    │   ├── cleaner.py
+    │   ├── chunker.py
+    │   └── metadata.py
+    │
+    ├── embeddings/
+    │   ├── __init__.py
+    │   └── embedder.py
+    │
+    ├── retrieval/
+    │   ├── __init__.py
+    │   └── retriever.py
+    │
+    └── generation/
+        ├── __init__.py
+        ├── llm_generator.py
+        └── citations.py
+```
+
+> **Note:** The structure above reflects the project architecture discussed during development. If additional helper files exist in `scripts/` or `data/processed/`, they can be added to this section as the project evolves.
+
+---
+
+# 🧩 Main Components
+
+## 1. Document Ingestion
+
+The ingestion layer prepares the policy documents for the RAG system.
+
+```text
+Raw Documents
+     ↓
+Loader
+     ↓
+Cleaner
+     ↓
+Metadata Extraction
+     ↓
+Chunker
+     ↓
+Processed Chunks
+```
+
+### PyMuPDF
+
+**PyMuPDF (`fitz`)** is used where PDF documents need to be read and their text extracted.
+
+Its role is document processing — it does **not** generate the final answer.
+
+---
+
+## 2. Embeddings
+
+The text chunks are converted into semantic vector representations using a Sentence Transformer embedding model.
+
+This allows the system to compare the meaning of a user's question with the meaning of policy chunks.
+
+```text
+Policy Chunk
+     ↓
+Embedding Model
+     ↓
+Vector Representation
 ```
 
 ---
 
-# ⚙️ Technology Stack
+## 3. FAISS Retrieval
+
+FAISS is used for efficient similarity search.
+
+When the user asks a question, the question is embedded and compared with the indexed policy vectors.
+
+```text
+User Question
+     ↓
+Question Embedding
+     ↓
+FAISS Similarity Search
+     ↓
+Top Relevant Policy Chunks
+```
+
+---
+
+# 🧠 PolicyEngine
+
+`PolicyEngine` is the core orchestration layer of PolicyPilot.
+
+It connects the major RAG components instead of placing all of the application logic directly inside the Streamlit interface.
+
+```text
+                 PolicyEngine
+                      │
+          ┌───────────┴───────────┐
+          │                       │
+          ▼                       ▼
+      Retriever              LLMGenerator
+          │                       │
+          ▼                       ▼
+   FAISS + Embeddings           Groq
+          │                       │
+          └───────────┬───────────┘
+                      ▼
+               Answer + Sources
+```
+
+This separation makes the project easier to maintain and allows the same core logic to be used by different interfaces.
+
+---
+
+# 🤖 Answer Generation
+
+The `LLMGenerator` uses the retrieved policy chunks as context for the Groq LLM.
+
+The generation logic follows strict grounding rules:
+
+1. Use only the retrieved policy context.
+2. Do not use outside knowledge.
+3. Do not invent company policy.
+4. Do not make unsupported assumptions.
+5. If the retrieved context does not contain the answer, clearly say that the information was not found.
+
+This helps reduce hallucinated policy answers.
+
+---
+
+# 📚 Citations
+
+After retrieval and answer generation, PolicyPilot formats the retrieved policy information into source references.
+
+The Streamlit UI displays these sources underneath the generated answer.
+
+```text
+Question
+   ↓
+Retrieve relevant chunks
+   ↓
+Generate grounded answer
+   ↓
+Format citations
+   ↓
+Answer + Sources
+```
+
+---
+
+# 🎨 Streamlit Interface
+
+The Streamlit application provides the user-facing chat experience.
+
+The interface includes:
+
+- 🏛️ PolicyPilot branding
+- 💬 Chat-based question answering
+- 💡 Example policy questions
+- 🗑️ Conversation clearing
+- 🔎 Retrieval status
+- 📚 Source display
+- 📱 Responsive Streamlit layout
+
+The live application is available here:
+
+**https://policypilot-jifgmb3kctvb6e9bzxvszi.streamlit.app/**
+
+---
+
+# ⚡ FastAPI API
+
+PolicyPilot also contains a FastAPI layer that exposes the RAG pipeline through API endpoints.
+
+Main endpoints:
+
+```text
+GET  /
+GET  /health
+POST /ask
+```
+
+### Example request
+
+```json
+{
+  "question": "What is the remote work policy?"
+}
+```
+
+### Example response
+
+```json
+{
+  "answer": "Generated answer based on retrieved policy context.",
+  "sources": []
+}
+```
+
+The FastAPI layer separates the backend RAG logic from the Streamlit presentation layer and makes the project easier to integrate with other clients in the future.
+
+---
+
+# 🔗 Why FastAPI?
+
+Streamlit is used for the **interactive user interface**, while FastAPI provides a **backend/API layer**.
+
+```text
+                  PolicyPilot
+                      │
+          ┌───────────┴───────────┐
+          │                       │
+          ▼                       ▼
+      Streamlit               FastAPI
+        UI                     API
+          │                       │
+          └───────────┬───────────┘
+                      ▼
+                 PolicyEngine
+                      │
+             ┌────────┴────────┐
+             ▼                 ▼
+         Retriever        LLMGenerator
+             │                 │
+            FAISS            Groq
+```
+
+This architecture demonstrates how the same RAG core can support a web UI as well as an API interface.
+
+---
+
+# 🛠️ Technology Stack
 
 | Technology | Purpose |
 |---|---|
@@ -147,105 +373,28 @@ PolicyPilot/
 | FAISS | Vector similarity search |
 | Sentence Transformers | Semantic embeddings |
 | Groq | LLM-based answer generation |
-| PyMuPDF | PDF/document processing |
+| PyMuPDF | PDF/document text extraction |
+| Pathlib | File and directory path handling |
 | NumPy | Numerical operations |
 | python-dotenv | Environment variable management |
 
 ---
 
-# 🔍 How Retrieval Works
+# 📁 Path Management
 
-When a user submits a question:
+`pathlib.Path` is used for file and directory path handling where required.
 
-1. The question is converted into an embedding.
-2. FAISS searches the vector index for semantically similar chunks.
-3. The most relevant policy chunks are selected.
-4. PolicyEngine passes the retrieved context to the LLM.
-5. The LLM generates an answer using only the retrieved policy context.
-6. The application displays the answer and its sources.
+Example:
 
-This approach helps reduce hallucinations because the model is explicitly instructed not to invent policy information.
+```python
+from pathlib import Path
+```
+
+Pathlib provides cleaner and more cross-platform path management than manually constructing filesystem paths.
 
 ---
 
-# 🛡️ Grounded Generation
-
-PolicyPilot uses strict generation instructions:
-
-- Use only retrieved policy context.
-- Do not use outside knowledge.
-- Do not invent policy information.
-- Do not make assumptions.
-- If the answer is not supported by the retrieved documents, clearly state that the information was not found.
-
-This makes the application more suitable for policy-related question answering than a generic chatbot.
-
----
-
-# 🧩 PolicyEngine
-
-`PolicyEngine` acts as the main orchestration layer of the application.
-
-It connects the major RAG components:
-
-```text
-User Question
-      │
-      ▼
-PolicyEngine
-      │
-      ├── Retriever
-      │      └── FAISS + Embeddings
-      │
-      └── LLMGenerator
-             └── Groq
-      │
-      ▼
-Answer + Sources
-```
-
-This keeps the Streamlit UI focused on presentation while the core RAG logic remains inside the application architecture.
-
----
-
-# 🔌 FastAPI Layer
-
-PolicyPilot also includes a FastAPI API layer.
-
-The API exposes the RAG functionality through endpoints such as:
-
-```text
-GET  /
-GET  /health
-POST /ask
-```
-
-Example request:
-
-```json
-{
-  "question": "What is the remote work policy?"
-}
-```
-
-Example response:
-
-```json
-{
-  "answer": "The answer generated from the retrieved policy context...",
-  "sources": [
-    {
-      "source": "Remote Work Policy"
-    }
-  ]
-}
-```
-
-The FastAPI layer demonstrates how the RAG pipeline can be exposed as a reusable backend service instead of being limited to a Streamlit application.
-
----
-
-# 💻 Run Locally
+# 💻 Local Setup
 
 ## 1. Clone the repository
 
@@ -260,7 +409,7 @@ cd PolicyPilot
 python -m venv venv
 ```
 
-Activate it on Windows PowerShell:
+### Windows PowerShell
 
 ```powershell
 .env\Scripts\Activate.ps1
@@ -272,7 +421,7 @@ Activate it on Windows PowerShell:
 pip install -r requirements.txt
 ```
 
-## 4. Configure environment variables
+## 4. Add environment variables
 
 Create a `.env` file in the project root:
 
@@ -280,15 +429,19 @@ Create a `.env` file in the project root:
 GROQ_API_KEY=your_groq_api_key
 ```
 
-Never commit your API key to GitHub.
+Do not commit `.env` to GitHub.
 
-## 5. Run Streamlit
+---
+
+# ▶️ Run Streamlit
+
+From the project root:
 
 ```bash
 streamlit run app.py
 ```
 
-The application will open in your browser.
+The Streamlit application will open in your browser.
 
 ---
 
@@ -300,13 +453,13 @@ From the project root:
 python -m uvicorn src.api.main:app --reload
 ```
 
-The API will run locally at:
+Local API:
 
 ```text
 http://127.0.0.1:8000
 ```
 
-FastAPI documentation is available at:
+Swagger API documentation:
 
 ```text
 http://127.0.0.1:8000/docs
@@ -314,9 +467,7 @@ http://127.0.0.1:8000/docs
 
 ---
 
-# 🧪 Testing the API
-
-You can test the `/ask` endpoint using the FastAPI Swagger UI.
+# 🧪 Test FastAPI
 
 Open:
 
@@ -330,13 +481,19 @@ Then:
 2. Click **Try it out**
 3. Enter a question
 4. Click **Execute**
-5. Check the generated answer and sources
+5. Review the answer and sources
+
+Example:
+
+```json
+{
+  "question": "What is the sick leave policy?"
+}
+```
 
 ---
 
 # 🔐 Environment Variables
-
-The project uses environment variables for secrets.
 
 Required:
 
@@ -344,7 +501,7 @@ Required:
 GROQ_API_KEY=your_groq_api_key
 ```
 
-Example `.gitignore`:
+Recommended `.gitignore` entries:
 
 ```text
 .env
@@ -353,57 +510,62 @@ __pycache__/
 *.pyc
 ```
 
+Never expose API keys in source code or public repositories.
+
 ---
 
 # 📊 Project Highlights
 
-### Retrieval-Augmented Generation
+### 🔎 Complete RAG Pipeline
 
-The project demonstrates a complete RAG workflow rather than sending user questions directly to an LLM.
+PolicyPilot demonstrates the complete flow from raw policy documents to retrieved context and LLM-generated answers.
 
-### Semantic Search
+### 🧠 Semantic Retrieval
 
-Policy chunks are converted into embeddings so that questions can retrieve semantically related information even when the wording differs.
+The system retrieves information based on semantic similarity rather than relying only on exact keyword matches.
 
-### Vector Database
+### ⚡ Vector Search
 
-FAISS provides efficient similarity search over the generated embeddings.
+FAISS is used to efficiently search the embedding index.
 
-### Source Grounding
+### 📚 Grounded Answers
 
-Retrieved sources are returned with the answer so users can understand where the response came from.
+The LLM receives retrieved policy context and is instructed not to invent unsupported policy information.
 
-### Modular Architecture
+### 🔗 Source Transparency
 
-The project separates ingestion, embeddings, retrieval, generation, API, and UI responsibilities.
+Relevant source information is displayed alongside answers.
+
+### 🧩 Modular Architecture
+
+The project separates ingestion, embeddings, retrieval, generation, core orchestration, API, and UI responsibilities.
 
 ---
 
 # 🚀 Deployment
 
-The Streamlit interface is publicly deployed and available here:
+The public Streamlit interface is deployed here:
 
-**Live Application:**  
-https://policypilot-jifgmb3kctvb6e9bzxvszi.streamlit.app/
+### 🌐 Live Demo
 
-The project is structured so the RAG logic can also be exposed through FastAPI as a backend service when required.
+**https://policypilot-jifgmb3kctvb6e9bzxvszi.streamlit.app/**
+
+The project also contains a FastAPI backend layer for exposing the RAG pipeline as an API when required.
 
 ---
 
 # 📈 Future Improvements
 
-Possible future improvements include:
-
 - 🔐 Authentication and role-based access
-- 📄 Support for more document formats
+- 📄 Support for additional document formats
 - 🗂️ Multiple policy collections
 - 🔎 Hybrid keyword + semantic retrieval
 - 📊 Retrieval evaluation metrics
 - 🧪 Automated RAG evaluation
-- 💾 Conversation persistence
+- 💾 Persistent conversation history
 - ⚡ Streaming LLM responses
 - 🏢 Organization-specific policy workspaces
-- 📌 Better citation metadata and document navigation
+- 📌 Enhanced document navigation and citations
 
 ---
 
@@ -411,19 +573,22 @@ Possible future improvements include:
 
 This project demonstrates practical experience with:
 
-- Retrieval-Augmented Generation
+- Retrieval-Augmented Generation (RAG)
+- Document ingestion and preprocessing
 - Embeddings
 - Vector databases
 - Semantic search
 - LLM integration
 - Prompt engineering
+- PolicyEngine architecture
 - FastAPI
 - Streamlit
+- PyMuPDF
+- Pathlib
 - Modular Python architecture
 - Environment variable management
 - Git and GitHub
 - Cloud deployment
 
 ---
-
 
