@@ -20,7 +20,7 @@ The application also displays the **sources used to produce the answer**, making
 
 ## ✨ Features
 
-- 📄 Policy document ingestion
+- 📄 Policy document ingestion (Markdown-based handbook)
 - 🧹 Text cleaning and preprocessing
 - ✂️ Document chunking
 - 🧠 Semantic embeddings
@@ -54,7 +54,7 @@ PolicyPilot lets the user ask these questions naturally and retrieves relevant i
 # 🔄 RAG Pipeline
 
 ```text
-                    Policy Documents
+                    Policy Documents (Markdown)
                            │
                            ▼
                   Document Ingestion
@@ -154,18 +154,16 @@ PolicyPilot/
         └── citations.py
 ```
 
-> **Note:** The structure above reflects the project architecture discussed during development. If additional helper files exist in `scripts/` or `data/processed/`, they can be added to this section as the project evolves.
-
 ---
 
 # 🧩 Main Components
 
 ## 1. Document Ingestion
 
-The ingestion layer prepares the policy documents for the RAG system.
+The ingestion layer prepares the policy documents (Markdown files) for the RAG system.
 
 ```text
-Raw Documents
+Raw Markdown Documents
      ↓
 Loader
      ↓
@@ -178,11 +176,7 @@ Chunker
 Processed Chunks
 ```
 
-### PyMuPDF
-
-**PyMuPDF (`fitz`)** is used where PDF documents need to be read and their text extracted.
-
-Its role is document processing — it does **not** generate the final answer.
+The `loader` module reads the Markdown-based policy handbook, and the `cleaner` module normalizes the text before chunking, ensuring consistent input for the embedding stage.
 
 ---
 
@@ -365,18 +359,17 @@ This architecture demonstrates how the same RAG core can support a web UI as wel
 
 # 🛠️ Technology Stack
 
-| Technology | Purpose |
-|---|---|
-| Python | Core programming language |
-| Streamlit | Interactive web interface |
-| FastAPI | REST API layer |
-| FAISS | Vector similarity search |
-| Sentence Transformers | Semantic embeddings |
-| Groq | LLM-based answer generation |
-| PyMuPDF | PDF/document text extraction |
-| Pathlib | File and directory path handling |
-| NumPy | Numerical operations |
-| python-dotenv | Environment variable management |
+| Technology            | Purpose                          |
+| ---------------------- | --------------------------------- |
+| Python                 | Core programming language         |
+| Streamlit              | Interactive web interface         |
+| FastAPI                | REST API layer                    |
+| FAISS                  | Vector similarity search          |
+| Sentence Transformers  | Semantic embeddings               |
+| Groq                   | LLM-based answer generation       |
+| Pathlib                | File and directory path handling  |
+| NumPy                  | Numerical operations               |
+| python-dotenv          | Environment variable management   |
 
 ---
 
@@ -412,7 +405,7 @@ python -m venv venv
 ### Windows PowerShell
 
 ```powershell
-.env\Scripts\Activate.ps1
+.\venv\Scripts\Activate.ps1
 ```
 
 ## 3. Install dependencies
@@ -557,7 +550,7 @@ The project also contains a FastAPI backend layer for exposing the RAG pipeline 
 # 📈 Future Improvements
 
 - 🔐 Authentication and role-based access
-- 📄 Support for additional document formats
+- 📄 Support for additional document formats (PDF, DOCX)
 - 🗂️ Multiple policy collections
 - 🔎 Hybrid keyword + semantic retrieval
 - 📊 Retrieval evaluation metrics
@@ -583,12 +576,8 @@ This project demonstrates practical experience with:
 - PolicyEngine architecture
 - FastAPI
 - Streamlit
-- PyMuPDF
 - Pathlib
 - Modular Python architecture
 - Environment variable management
 - Git and GitHub
 - Cloud deployment
-
----
-
