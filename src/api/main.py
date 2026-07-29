@@ -1,27 +1,51 @@
 import os
 import sys
 
+# ============================================================
+# Project Root
+# ============================================================
+
 BASE_DIR = os.path.dirname(
     os.path.dirname(
-        os.path.dirname(os.path.abspath(__file__))
+        os.path.dirname(
+            os.path.abspath(__file__)
+        )
     )
 )
 
-sys.path.insert(0, BASE_DIR)
+if BASE_DIR not in sys.path:
+    sys.path.insert(0, BASE_DIR)
+
+
+# ============================================================
+# FastAPI
+# ============================================================
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from src.api.schemas import QuestionRequest, QuestionResponse
-from src.retrieval.retriever import Retriever
-from src.generation.llm_generator import LLMGenerator
-from src.generation.citations import format_citations
 
+from src.api.schemas import QuestionRequest, QuestionResponse
+from src.core.policy_engine import PolicyEngine
+
+
+# ============================================================
+# App
+# ============================================================
 
 app = FastAPI(
     title="PolicyPilot API",
-    description="AI-powered policy assistant using Retrieval-Augmented Generation",
+    description=(
+        "AI-powered policy assistant "
+        "using Retrieval-Augmented Generation"
+    ),
     version="1.0.0"
 )
+
+
+# ============================================================
+# CORS
+# ============================================================
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -30,26 +54,17 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-INDEX_PATH = os.path.join(
-    BASE_DIR,
-    "data",
-    "processed",
-    "policy.index"
-)
 
-CHUNKS_PATH = os.path.join(
-    BASE_DIR,
-    "data",
-    "processed",
-    "chunks.json"
-)
+# ============================================================
+# Policy Engine
+# ============================================================
+
+engine = PolicyEngine()
 
 
-retriever = Retriever(
-    INDEX_PATH,
-    CHUNKS_PATH
-)
-
+# ============================================================
+# Root
+# ============================================================
 
 @app.get("/")
 def root():
@@ -58,6 +73,10 @@ def root():
     }
 
 
+# ============================================================
+# Health
+# ============================================================
+
 @app.get("/health")
 def health():
     return {
@@ -65,8 +84,17 @@ def health():
     }
 
 
-@app.post("/ask", response_model=QuestionResponse)
-def ask_question(request: QuestionRequest):
+# ============================================================
+# Ask
+# ============================================================
+
+@app.post(
+    "/ask",
+    response_model=QuestionResponse
+)
+def ask_question(
+    request: QuestionRequest
+):
 
     question = request.question.strip()
 
@@ -78,38 +106,21 @@ def ask_question(request: QuestionRequest):
 
     try:
 
-        results = retriever.retrieve(
-            question,
-            top_k=5
-        )
+        result = engine.ask(question)
 
-        if not results:
-            return {
-                "answer": "I could not find relevant information in the available policies.",
-                "sources": []
-            }
-
-       
-        generator = LLMGenerator()
-
-        answer = generator.generate_answer(
-        question,
-        results)
-
-
-
-        citations = format_citations(
-            results
-        )
-
-        return {
-            "answer": answer,
-            "sources": citations
-        }
+        return result
 
     except Exception as e:
 
+        print(
+            f"ERROR IN /ask: "
+            f"{type(e).__name__}: {e}"
+        )
+
         raise HTTPException(
             status_code=500,
-            detail=f"Failed to process question: {str(e)}"
+            detail=(
+                f"Failed to process question: "
+                f"{type(e).__name__}: {e}"
+            )
         )

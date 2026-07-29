@@ -1,26 +1,10 @@
-import os
-API_BASE_URL = os.getenv(
-    "API_URL",
-    "http://127.0.0.1:8000"
-)
-
-API_URL = f"{API_BASE_URL.rstrip('/')}/query"
-import requests
 import streamlit as st
 
-
-# ============================================================
-# Configuration
-# ============================================================
-
-API_URL = os.getenv(
-    "POLICYPILOT_API_URL",
-    "http://127.0.0.1:8000",
-)
+from src.core.policy_engine import PolicyEngine
 
 
 # ============================================================
-# Page Configuration
+# PAGE CONFIG
 # ============================================================
 
 st.set_page_config(
@@ -32,247 +16,348 @@ st.set_page_config(
 
 
 # ============================================================
-# Custom CSS
+# CSS
 # ============================================================
 
 st.markdown(
     """
-    <style>
+<style>
 
-    /* =========================
-       Main App
-       ========================= */
+/* =========================================================
+   GLOBAL
+========================================================= */
 
-    .stApp {
-        background-color: #F8FAFC;
-    }
+.stApp {
+background: #F8FAFC !important;
+color: #1E293B !important;
+}
 
-    .main .block-container {
-        max-width: 1100px;
-        padding-top: 2rem;
-        padding-bottom: 7rem;
-    }
-
-
-    /* =========================
-       Header
-       ========================= */
-
-    .brand-container {
-        text-align: center;
-        padding: 10px 0 30px 0;
-    }
-
-    .brand-icon {
-        font-size: 48px;
-        margin-bottom: 5px;
-    }
-
-    .main-title {
-        color: #1E293B;
-        font-size: 42px;
-        font-weight: 800;
-        letter-spacing: -1px;
-        margin: 0;
-    }
-
-    .main-title span {
-        color: #4F46E5;
-    }
-
-    .subtitle {
-        color: #64748B;
-        font-size: 17px;
-        margin-top: 8px;
-    }
+.stApp * {
+box-sizing: border-box;
+}
 
 
-    /* =========================
-       Sidebar
-       ========================= */
+/* =========================================================
+   ALL STREAMLIT TEXT
+========================================================= */
 
-    section[data-testid="stSidebar"] {
-        background: linear-gradient(
-            180deg,
-            #EEF2FF 0%,
-            #F8FAFC 100%
-        );
-        border-right: 1px solid #E2E8F0;
-    }
-
-    section[data-testid="stSidebar"] h1,
-    section[data-testid="stSidebar"] h2,
-    section[data-testid="stSidebar"] h3 {
-        color: #1E293B;
-    }
-
-    section[data-testid="stSidebar"] p {
-        color: #475569;
-    }
+.stApp p,
+.stApp span,
+.stApp label,
+.stApp div,
+.stApp li,
+.stApp td,
+.stApp th {
+color: #1E293B;
+}
 
 
-    /* =========================
-       Sidebar Buttons
-       ========================= */
+/* Markdown text */
 
-    section[data-testid="stSidebar"] .stButton > button {
-        background-color: #FFFFFF;
-        color: #334155;
-        border: 1px solid #CBD5E1;
-        border-radius: 12px;
-        padding: 0.65rem 0.8rem;
-        font-weight: 500;
-        transition: all 0.2s ease;
-    }
+[data-testid="stMarkdownContainer"] p {
+color: #1E293B !important;
+}
 
-    section[data-testid="stSidebar"] .stButton > button:hover {
-        border-color: #4F46E5;
-        color: #4F46E5;
-        background-color: #EEF2FF;
-        transform: translateY(-1px);
-    }
+[data-testid="stMarkdownContainer"] li {
+color: #1E293B !important;
+}
+
+[data-testid="stMarkdownContainer"] strong {
+color: #1E293B !important;
+}
+
+[data-testid="stMarkdownContainer"] em {
+color: #475569 !important;
+}
 
 
-    /* =========================
-       Chat Messages
-       ========================= */
+/* =========================================================
+   HEADER
+========================================================= */
 
-    [data-testid="stChatMessage"] {
-        border-radius: 16px;
-        padding: 8px 10px;
-        margin-bottom: 12px;
-    }
+.brand-container {
+text-align: center;
+padding: 20px 0 35px 0;
+}
 
-    /* User message */
-    [data-testid="stChatMessage"]:has(
-        [data-testid="chatAvatarIcon-user"]
-    ) {
-        background-color: #EEF2FF;
-        border: 1px solid #E0E7FF;
-    }
+.brand-icon {
+font-size: 52px !important;
+color: #1E293B !important;
+}
 
-    /* Assistant message */
-    [data-testid="stChatMessage"]:has(
-        [data-testid="chatAvatarIcon-assistant"]
-    ) {
-        background-color: #FFFFFF;
-        border: 1px solid #E2E8F0;
-        box-shadow: 0 3px 12px rgba(15, 23, 42, 0.05);
-    }
+.main-title {
+color: #1E293B !important;
+font-size: 44px !important;
+font-weight: 800 !important;
+line-height: 1.2;
+}
 
+.brand-name {
+color: #4F46E5 !important;
+}
 
-    /* =========================
-       Chat Text
-       ========================= */
-
-    [data-testid="stChatMessage"] p {
-        color: #1E293B !important;
-        font-size: 16px;
-        line-height: 1.65;
-    }
+.subtitle {
+color: #64748B !important;
+font-size: 17px !important;
+margin-top: 10px;
+}
 
 
-    /* =========================
-       Sources Heading
-       ========================= */
+/* =========================================================
+   SIDEBAR
+========================================================= */
 
-    .sources-title {
-        color: #4F46E5;
-        font-size: 15px;
-        font-weight: 700;
-        margin-top: 18px;
-        margin-bottom: 8px;
-    }
+section[data-testid="stSidebar"] {
+background: #EEF2FF !important;
+}
 
+section[data-testid="stSidebar"] * {
+color: #1E293B !important;
+}
 
-    /* =========================
-       Sources Box
-       ========================= */
-
-    .source-box {
-        background: #EEF2FF;
-        border: 1px solid #C7D2FE;
-        border-left: 4px solid #4F46E5;
-        border-radius: 10px;
-        padding: 10px 14px;
-        margin: 7px 0;
-        color: #1E293B !important;
-    }
-
-    .source-box span {
-        color: #1E293B !important;
-        font-size: 14px;
-    }
-
-    .source-box strong {
-        color: #312E81 !important;
-    }
+section[data-testid="stSidebar"] p {
+color: #475569 !important;
+}
 
 
-    /* =========================
-       Chat Input
-       ========================= */
+/* Sidebar buttons */
 
-    [data-testid="stChatInput"] {
-        border-radius: 16px;
-    }
+section[data-testid="stSidebar"] .stButton button {
+background: #FFFFFF !important;
+color: #334155 !important;
+border: 1px solid #CBD5E1 !important;
+border-radius: 12px !important;
+font-weight: 600 !important;
+}
 
-    [data-testid="stChatInput"] textarea {
-        color: #1E293B !important;
-        background-color: #FFFFFF !important;
-    }
+section[data-testid="stSidebar"] .stButton button:hover {
+background: #E0E7FF !important;
+color: #4338CA !important;
+border-color: #6366F1 !important;
+}
 
+section[data-testid="stSidebar"] .stButton button p {
+color: #1E293B !important;
+}
 
-    /* =========================
-       Footer
-       ========================= */
-
-    .footer {
-        text-align: center;
-        color: #94A3B8;
-        font-size: 13px;
-        margin-top: 35px;
-        padding: 20px;
-    }
+section[data-testid="stSidebar"] .stButton button:hover p {
+color: #4338CA !important;
+}
 
 
-    /* =========================
-       Divider
-       ========================= */
+/* =========================================================
+   CHAT MESSAGE
+========================================================= */
 
-    hr {
-        border-color: #E2E8F0 !important;
-    }
+[data-testid="stChatMessage"] {
+border-radius: 16px !important;
+padding: 14px !important;
+margin-bottom: 14px !important;
+}
 
-    </style>
-    """,
+
+/* User */
+
+[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) {
+background: #EEF2FF !important;
+border: 1px solid #C7D2FE !important;
+}
+
+
+/* Assistant */
+
+[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) {
+background: #FFFFFF !important;
+border: 1px solid #E2E8F0 !important;
+}
+
+
+/* Chat text */
+
+[data-testid="stChatMessage"] p,
+[data-testid="stChatMessage"] span,
+[data-testid="stChatMessage"] div {
+color: #1E293B !important;
+}
+
+
+/* =========================================================
+   CHAT INPUT
+========================================================= */
+
+[data-testid="stChatInput"] {
+background: #FFFFFF !important;
+}
+
+[data-testid="stChatInput"] textarea {
+background: #FFFFFF !important;
+color: #1E293B !important;
+caret-color: #4F46E5 !important;
+}
+
+[data-testid="stChatInput"] textarea::placeholder {
+color: #94A3B8 !important;
+}
+
+
+/* =========================================================
+   SOURCE TITLE
+========================================================= */
+
+.sources-title {
+color: #4338CA !important;
+font-size: 16px !important;
+font-weight: 700 !important;
+margin-top: 18px;
+margin-bottom: 10px;
+}
+
+
+/* =========================================================
+   SOURCE CARD
+========================================================= */
+
+.source-card {
+background: #EEF2FF !important;
+border: 1px solid #C7D2FE !important;
+border-left: 5px solid #4F46E5 !important;
+border-radius: 10px !important;
+padding: 12px 15px !important;
+margin: 8px 0 !important;
+color: #1E293B !important;
+}
+
+.source-card * {
+color: #1E293B !important;
+}
+
+
+/* =========================================================
+   HEADINGS
+========================================================= */
+
+h1, h2, h3, h4, h5, h6 {
+color: #1E293B !important;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.stButton button {
+background: #4F46E5 !important;
+color: #FFFFFF !important;
+border: none !important;
+border-radius: 10px !important;
+font-weight: 600 !important;
+}
+
+.stButton button p {
+color: #FFFFFF !important;
+}
+
+.stButton button:hover {
+background: #4338CA !important;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer-box {
+background: #FFFFFF !important;
+border: 1px solid #E2E8F0 !important;
+border-radius: 14px !important;
+padding: 22px !important;
+margin-top: 45px !important;
+text-align: center !important;
+color: #64748B !important;
+}
+
+.footer-box * {
+color: #64748B !important;
+}
+
+.footer-box strong {
+color: #1E293B !important;
+}
+
+
+/* =========================================================
+   DIVIDER
+========================================================= */
+
+hr {
+border-color: #E2E8F0 !important;
+}
+
+
+/* =========================================================
+   ALERTS / INFO
+========================================================= */
+
+[data-testid="stAlert"] p {
+color: #1E293B !important;
+}
+
+
+/* =========================================================
+   SPINNER
+========================================================= */
+
+[data-testid="stSpinner"] {
+color: #4F46E5 !important;
+}
+
+</style>
+""",
     unsafe_allow_html=True,
 )
 
 
 # ============================================================
-# Header
+# HEADER
 # ============================================================
 
 st.markdown(
     """
-    <div class="brand-container">
-        <div class="brand-icon">🏛️</div>
-        <div class="main-title">
-            Policy<span>Pilot</span>
-        </div>
-        <div class="subtitle">
-            AI-powered policy assistant for intelligent,
-            document-grounded answers
-        </div>
-    </div>
-    """,
+<div class="brand-container">
+<div class="brand-icon">🏛️</div>
+<div class="main-title">Policy<span class="brand-name">Pilot</span></div>
+<div class="subtitle">AI-powered policy assistant for intelligent, document-grounded answers</div>
+</div>
+""",
     unsafe_allow_html=True,
 )
 
 
 # ============================================================
-# Session State
+# POLICY ENGINE
+# ============================================================
+
+@st.cache_resource
+def load_policy_engine():
+    return PolicyEngine()
+
+
+try:
+    engine = load_policy_engine()
+
+except Exception as error:
+
+    st.error("❌ PolicyPilot could not initialize.")
+
+    st.code(
+        f"{type(error).__name__}: {error}"
+    )
+
+    st.stop()
+
+
+# ============================================================
+# SESSION STATE
 # ============================================================
 
 if "messages" not in st.session_state:
@@ -280,7 +365,7 @@ if "messages" not in st.session_state:
 
 
 # ============================================================
-# Sidebar
+# SIDEBAR
 # ============================================================
 
 with st.sidebar:
@@ -296,20 +381,21 @@ with st.sidebar:
 
     st.markdown("### 💡 Try asking")
 
-    example_questions = [
+    examples = [
         "What is the remote work policy?",
         "How many annual leave days are available?",
         "What is the sick leave policy?",
         "What benefits are available to employees?",
     ]
 
-    for question in example_questions:
+    for example in examples:
 
         if st.button(
-            question,
+            example,
             use_container_width=True,
         ):
-            st.session_state.pending_question = question
+
+            st.session_state.pending_question = example
 
     st.divider()
 
@@ -317,6 +403,7 @@ with st.sidebar:
         "🗑️ Clear Conversation",
         use_container_width=True,
     ):
+
         st.session_state.messages = []
 
         if "pending_question" in st.session_state:
@@ -324,7 +411,7 @@ with st.sidebar:
 
         st.rerun()
 
-    st.markdown("---")
+    st.divider()
 
     st.caption(
         "🔎 Answers are generated from retrieved "
@@ -333,7 +420,50 @@ with st.sidebar:
 
 
 # ============================================================
-# Display Previous Messages
+# SOURCE DISPLAY
+# ============================================================
+
+def display_sources(sources):
+
+    if not sources:
+        return
+
+    st.markdown(
+        '<div class="sources-title">📚 Sources</div>',
+        unsafe_allow_html=True,
+    )
+
+    for source in sources:
+
+        if isinstance(source, dict):
+
+            name = (
+                source.get("source")
+                or source.get("document")
+                or source.get("file")
+                or source.get("title")
+                or "Policy Document"
+            )
+
+            page = source.get("page")
+
+            if page is not None:
+                source_text = f"📄 {name} — Page {page}"
+            else:
+                source_text = f"📄 {name}"
+
+        else:
+
+            source_text = f"📄 {source}"
+
+        st.markdown(
+            f'<div class="source-card">{source_text}</div>',
+            unsafe_allow_html=True,
+        )
+
+
+# ============================================================
+# PREVIOUS CHAT
 # ============================================================
 
 for message in st.session_state.messages:
@@ -347,50 +477,13 @@ for message in st.session_state.messages:
             and message.get("sources")
         ):
 
-            st.markdown(
-                '<div class="sources-title">📚 Sources</div>',
-                unsafe_allow_html=True,
+            display_sources(
+                message["sources"]
             )
-
-            for source in message["sources"]:
-
-                if isinstance(source, dict):
-
-                    source_name = (
-                        source.get("source")
-                        or source.get("document")
-                        or source.get("file")
-                        or source.get("title")
-                        or "Policy Document"
-                    )
-
-                    page = source.get("page")
-
-                    if page is not None:
-                        source_text = (
-                            f"📄 <strong>{source_name}</strong>"
-                            f" — Page {page}"
-                        )
-                    else:
-                        source_text = (
-                            f"📄 <strong>{source_name}</strong>"
-                        )
-
-                else:
-                    source_text = f"📄 {source}"
-
-                st.markdown(
-                    f"""
-                    <div class="source-box">
-                        <span>{source_text}</span>
-                    </div>
-                    """,
-                    unsafe_allow_html=True,
-                )
 
 
 # ============================================================
-# User Input
+# INPUT
 # ============================================================
 
 pending_question = st.session_state.pop(
@@ -406,14 +499,12 @@ question = user_question or pending_question
 
 
 # ============================================================
-# Send Question to FastAPI
+# PROCESS QUESTION
 # ============================================================
 
 if question:
 
-    # --------------------------------------------
-    # Display User Message
-    # --------------------------------------------
+    # User
 
     with st.chat_message("user"):
 
@@ -427,9 +518,7 @@ if question:
     )
 
 
-    # --------------------------------------------
-    # Call FastAPI
-    # --------------------------------------------
+    # Assistant
 
     with st.chat_message("assistant"):
 
@@ -439,99 +528,41 @@ if question:
 
             try:
 
-                response = requests.post(
-                    f"{API_URL}/ask",
-                    json={
-                        "question": question
-                    },
-                    timeout=120,
+                result = engine.ask(
+                    question
                 )
 
-                response.raise_for_status()
+                if isinstance(result, dict):
 
-                data = response.json()
+                    answer = result.get(
+                        "answer",
+                        "No answer was returned.",
+                    )
+
+                    sources = result.get(
+                        "sources",
+                        [],
+                    )
+
+                else:
+
+                    answer = str(result)
+                    sources = []
 
 
-                # --------------------------------
                 # Answer
-                # --------------------------------
-
-                answer = data.get(
-                    "answer",
-                    "No answer was returned by the API.",
-                )
-
-
-                # --------------------------------
-                # Sources
-                # --------------------------------
-
-                sources = data.get(
-                    "sources",
-                    [],
-                )
-
-
-                # --------------------------------
-                # Display Answer
-                # --------------------------------
 
                 st.markdown(answer)
 
 
-                # --------------------------------
-                # Display Sources
-                # --------------------------------
+                # Sources
 
-                if sources:
-
-                    st.markdown(
-                        '<div class="sources-title">'
-                        '📚 Sources'
-                        '</div>',
-                        unsafe_allow_html=True,
-                    )
-
-                    for source in sources:
-
-                        if isinstance(source, dict):
-
-                            source_name = (
-                                source.get("source")
-                                or source.get("document")
-                                or source.get("file")
-                                or source.get("title")
-                                or "Policy Document"
-                            )
-
-                            page = source.get("page")
-
-                            if page is not None:
-                                source_text = (
-                                    f"📄 <strong>{source_name}</strong>"
-                                    f" — Page {page}"
-                                )
-                            else:
-                                source_text = (
-                                    f"📄 <strong>{source_name}</strong>"
-                                )
-
-                        else:
-                            source_text = f"📄 {source}"
-
-                        st.markdown(
-                            f"""
-                            <div class="source-box">
-                                <span>{source_text}</span>
-                            </div>
-                            """,
-                            unsafe_allow_html=True,
-                        )
+                display_sources(
+                    sources
+                )
 
 
-                # --------------------------------
-                # Save Assistant Response
-                # --------------------------------
+                # Save
 
                 st.session_state.messages.append(
                     {
@@ -542,61 +573,29 @@ if question:
                 )
 
 
-            # ------------------------------------
-            # Error Handling
-            # ------------------------------------
-
-            except requests.exceptions.ConnectionError:
-
-                st.error(
-                    "❌ Could not connect to the FastAPI server."
-                )
-
-                st.info(
-                    f"Make sure FastAPI is running on {API_URL}"
-                )
-
-
-            except requests.exceptions.Timeout:
-
-                st.error(
-                    "⏳ The request took too long. "
-                    "Please try again."
-                )
-
-
-            except requests.exceptions.HTTPError as error:
-
-                st.error(
-                    f"❌ FastAPI returned an error: {error}"
-                )
-
-
-            except requests.exceptions.RequestException as error:
-
-                st.error(
-                    f"❌ Request failed: {error}"
-                )
-
-
             except Exception as error:
 
                 st.error(
-                    f"❌ Unexpected error: {error}"
+                    "❌ PolicyPilot could not process "
+                    "your question."
+                )
+
+                st.code(
+                    f"{type(error).__name__}: {error}"
                 )
 
 
 # ============================================================
-# Footer
+# FOOTER
 # ============================================================
 
 st.markdown(
     """
-    <div class="footer">
-        <strong>PolicyPilot</strong> • AI Policy Assistant
-        <br>
-        Grounded answers powered by Retrieval-Augmented Generation
-    </div>
-    """,
+<div class="footer-box">
+<strong>PolicyPilot</strong> • AI Policy Assistant
+<br><br>
+Grounded answers powered by Retrieval-Augmented Generation
+</div>
+""",
     unsafe_allow_html=True,
 )
