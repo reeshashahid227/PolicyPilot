@@ -10,7 +10,7 @@ BASE_DIR = os.path.dirname(
 sys.path.insert(0, BASE_DIR)
 
 from fastapi import FastAPI, HTTPException
-
+from fastapi.middleware.cors import CORSMiddleware
 from src.api.schemas import QuestionRequest, QuestionResponse
 from src.retrieval.retriever import Retriever
 from src.generation.llm_generator import LLMGenerator
@@ -21,6 +21,13 @@ app = FastAPI(
     title="PolicyPilot API",
     description="AI-powered policy assistant using Retrieval-Augmented Generation",
     version="1.0.0"
+)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 INDEX_PATH = os.path.join(
